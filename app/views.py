@@ -5,7 +5,20 @@ import sys
 # Create your views here.
 import subprocess
 from django.http import HttpResponse
+from .test import *
+from django.shortcuts import render
+import serial
+import math
+import requests
+import json
+import time
+import RPi.GPIO as GPIO
+from test import call_function
 
+
+def button_callback(channel):
+    print("Button was pushed!")
+    state = True
 
 def login(request):
     if request.method == 'POST':
@@ -51,5 +64,8 @@ def reading_data(request):
 
 
 def treatment_running(request):
+    #run call function
+    call_function()
     return render(request, 'treatment_running.html')
+                
 
