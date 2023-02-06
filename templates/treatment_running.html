@@ -1,5 +1,5 @@
 {% load static %}
-
+{% csrf_token %}
 <html>
   <head>
     <style>
@@ -37,32 +37,12 @@
         font-size: 20px;
         margin-bottom: 20px;
       }
-      .buttons {
-        display: flex;
-        justify-content: center;
-        margin-top: 20px;
-      }
-      .cancel-button,
-      .refresh-button,
-      .start-button {
-        width: 30%;
-        padding: 20px;
-        font-size: 20px;
-        border-radius: 10px;
-        margin-right: 10px;
-        cursor: pointer;
-      }
-      .cancel-button {
-        background-color: red;
-        color: white;
-      }
-      .refresh-button {
+      .progress-bar {
+        width: 100%;
+        height: 20px;
         background-color: blue;
-        color: white;
-      }
-      .start-button {
-        background-color: green;
-        color: white;
+        border-radius: 10px;
+        margin-top: 20px;
       }
       @media (max-width: 600px) {
         .white-box {
@@ -83,14 +63,7 @@
           <h3>Dose (Unit)</h3>
           <p>2.0</p>
         </div>
-        <form method="POST">
-             {% csrf_token %}
-        <div class="buttons">
-          <button class="cancel-button">Cancel</button>
-          <button class="refresh-button">Refresh</button>
-          <button class="start-button">Start</button>
-        </div>
-        </form>
+        <div class="progress-bar"></div>
       </div>
     </div>
   </body>

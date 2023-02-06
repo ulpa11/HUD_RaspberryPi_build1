@@ -45,6 +45,11 @@ def login(request):
     return render(request, 'login.html')
 
 def reading_data(request):
+    if request.method=="POST":
+        return redirect('treatment_running')
     return render(request, 'reading_data.html')
 
+
+def treatment_running(request):
+    return render(request, 'treatment_running.html')
 
