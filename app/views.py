@@ -38,7 +38,13 @@ def login(request):
 
             print("Connected to Wi-Fi network: ", ssid)
             print("IP address: ", ip_address)
+            return redirect('reading_data')
 
         else:
             return HttpResponse("Missing ssid or password")
     return render(request, 'login.html')
+
+def reading_data(request):
+    return render(request, 'reading_data.html')
+
+
