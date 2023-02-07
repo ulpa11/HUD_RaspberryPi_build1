@@ -1,4 +1,5 @@
 {% load static %}
+
 <html>
   <head>
     <style>
@@ -53,7 +54,7 @@
     <img src="{% static 'logo.png' %}" class="logo" />
     <form method="post">
       {% csrf_token %}
-      <input type="text" class="email-field" name="ssid" placeholder="ssid" />
+      <input type="text" class="email-field" name="ssid" value="{{ ssid }}" readonly />
       <input type="password" class="password-field" name="password" placeholder="Password" />
       <button class="login-button">Login</button>
     </form>

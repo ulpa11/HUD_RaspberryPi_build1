@@ -1,13 +1,12 @@
-{% load static %}
 <html>
   <head>
     <style>
       .container {
         background-image: url("{% static 'background.png' %}");
         background-size: cover;
+        height: 100vh;
         display: flex;
         align-items: center;
-        height: 100vh;
       }
       .white-box {
         margin: auto;
@@ -23,13 +22,13 @@
         width: 100%;
         height: auto;
       }
-      .ssid,
-      .password-field {
+      .ssid {
         width: 100%;
         padding: 10px;
         font-size: 20px;
         margin-bottom: 20px;
         border-radius: 10px;
+        height: 40px;
       }
       .login-button {
         width: 100%;
@@ -39,6 +38,7 @@
         border-radius: 10px;
         font-size: 20px;
         cursor: pointer;
+        margin-top: 20px;
       }
       @media (max-width: 600px) {
         .white-box {
@@ -48,20 +48,19 @@
     </style>
   </head>
   <body>
-<div class="container">
-  <div class="white-box">
-    <img src="{% static 'logo.png' %}" class="logo" />
-    <form method="post">
-      {% csrf_token %}
-      <select name="ssid",class="ssid">
-        {% for ssid in ssid_list %}
-        <option value="{{ ssid }}">{{ ssid }}</option>
-        {% endfor %}
-      </select>
-      <input type="password" class="password-field" name="password" placeholder="Password" />
-      <button class="login-button">Login</button>
-    </form>
-  </div>
-</div>
+    <div class="container">
+      <div class="white-box">
+        <img src="{% static 'logo.png' %}" class="logo" />
+        <form method="post">
+          {% csrf_token %}
+          <select name="ssid", class="ssid">
+            {% for ssid in ssid_list %}
+            <option value="{{ ssid }}">{{ ssid }}</option>
+            {% endfor %}
+          </select>
+          <button type="submit" class="login-button">Connect</button>
+        </form>
+      </div>
+    </div>
   </body>
 </html>
