@@ -1,19 +1,10 @@
 from django.shortcuts import render, redirect
 import subprocess
-import sys
-
-# Create your views here.
-import subprocess
+from hardware  import call_function
+#import json responce
+from django.http import JsonResponse
 from django.http import HttpResponse
-from .test import *
-from django.shortcuts import render
-import serial
-import math
-import requests
-import json
-import time
-import RPi.GPIO as GPIO
-from test import call_function
+
 
 
 def button_callback(channel):
@@ -67,5 +58,20 @@ def treatment_running(request):
     #run call function
     call_function()
     return render(request, 'treatment_running.html')
+
+def wifi_names(request):
+    try:
+        result = subprocess.run(["iwlist", "wlan0", "scan"], stdout=subprocess.PIPE)
+        output = result.stdout.decode("utf-8")
+        ssid_list = []
+        for line in output.split("\n"):
+            if "ESSID:" in line:
+                ssid = line.split("ESSID:")[1].strip('"')
+                ssid_list.append(ssid)
+        return JsonResponse(ssid_list, safe=False)
+    except Exception as e:
+        print("An error occurred while trying to retrieve the Wi-Fi network names.")
+        print(e)
+        return HttpResponse("An error occurred while trying to retrieve the Wi-Fi network names.")
                 
 
