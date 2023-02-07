@@ -59,6 +59,22 @@ def treatment_running(request):
     call_function()
     return render(request, 'treatment_running.html')
 
+# def wifi_names(request):
+#     try:
+#         result = subprocess.run(["iwlist", "wlan0", "scan"], stdout=subprocess.PIPE)
+#         output = result.stdout.decode("utf-8")
+#         ssid_list = []
+#         for line in output.split("\n"):
+#             if "ESSID:" in line:
+#                 ssid = line.split("ESSID:")[1].strip('"')
+#                 ssid_list.append(ssid)
+#         return JsonResponse(ssid_list, safe=False)
+#     except Exception as e:
+#         print("An error occurred while trying to retrieve the Wi-Fi network names.")
+#         print(e)
+#         return HttpResponse("An error occurred while trying to retrieve the Wi-Fi network names.")
+                
+
 def wifi_names(request):
     try:
         result = subprocess.run(["iwlist", "wlan0", "scan"], stdout=subprocess.PIPE)
@@ -68,10 +84,8 @@ def wifi_names(request):
             if "ESSID:" in line:
                 ssid = line.split("ESSID:")[1].strip('"')
                 ssid_list.append(ssid)
-        return JsonResponse(ssid_list, safe=False)
+        return render(request, 'wifi_names.html', {'ssid_list': ssid_list})
     except Exception as e:
         print("An error occurred while trying to retrieve the Wi-Fi network names.")
         print(e)
         return HttpResponse("An error occurred while trying to retrieve the Wi-Fi network names.")
-                
-
