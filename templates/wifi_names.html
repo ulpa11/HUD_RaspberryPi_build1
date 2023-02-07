@@ -23,7 +23,7 @@
         width: 100%;
         height: auto;
       }
-      .email-field,
+      .ssid,
       .password-field {
         width: 100%;
         padding: 10px;
@@ -53,7 +53,7 @@
     <img src="{% static 'logo.png' %}" class="logo" />
     <form method="post">
       {% csrf_token %}
-      <select name="ssid">
+      <select name="ssid",class="ssid">
         {% for ssid in ssid_list %}
         <option value="{{ ssid }}">{{ ssid }}</option>
         {% endfor %}
